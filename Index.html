@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bagas Ramadhan</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #c9e8ec, #add8e6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+      transition: background 0.5s ease;
+    }
+  /*<!-- CATATAN UNTUK BACKGROUND:
+    - Jika ingin mengubah warna, ganti nilai di 'background: linear-gradient(...)' pada body.
+    - Jika ingin menggunakan foto, ganti dengan: background: url('namafoto.jpg') no-repeat center center/cover;
+    - Jika ingin menggunakan GIF, gunakan cara yang sama dengan foto.
+    - Jika ingin video, tambahkan <video autoplay muted loop> di dalam body dengan position: fixed dan z-index negatif.
+  -->*/
+    section {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    section.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    img, h1, .button-container {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    section.active img {
+      animation: fadeInUp 0.6s ease forwards 0.2s;
+    }
+
+    section.active h1 {
+      animation: fadeInUp 0.6s ease forwards 0.4s;
+    }
+
+    section.active .button-container {
+      animation: fadeInUp 0.6s ease forwards 0.6s;
+    }
+
+    /* Foto pada halaman Home */
+    .foto-home {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 0 4px #007bff, 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .foto-home:hover {
+      transform: scale(7);
+      box-shadow: 0 0 0 4px #007bff, 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Foto pada halaman Portofolio */
+    .foto-portfolio {
+      width: 200px;
+      height: 200px;
+      border-radius: 20px;
+      object-fit: cover;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 0 5px #28a745, 0 4px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    .foto-portfolio:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 0 5px #28a745, 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Foto pada halaman Sosial Media */
+    .foto-social {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 0 4px #ff5722, 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .foto-social:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 0 4px #ff5722, 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .button-container {
+      display: flex;
+      gap: 20px;
+    }
+
+    .button-container button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.3s ease;
+    }
+
+    .button-container button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .foto-home {
+        width: 120px;
+        height: 120px;
+      }
+
+      .foto-portfolio {
+        width: 150px;
+        height: 150px;
+      }
+
+      .foto-social {
+        width: 130px;
+        height: 130px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .button-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Halaman Utama -->
+  <section id="home" class="active">
+    <img src="E:\Website\BagasRamadhan\media\Foto\profile.jpg" alt="Foto Bagas Ramadhan" class="foto-home" />
+    <h1>Bagas Ramadhan</h1>
+    <div class="button-container">
+        <p></p>
+        <p></p>
+      <button onclick="changeSection('portfolio')">Portofolio</button>
+      <button onclick="changeSection('social')">Sosial Media</button>
+    </div>
+  </section>
+
+  <!-- Halaman Portofolio -->
+  <section id="portfolio">
+    <h1>Portofolio</h1>
+    <img src="foto-portfolio.jpg" alt="Foto Portofolio" class="foto-portfolio" />
+    
+    <div class="button-container">
+      <button onclick="changeSection('home')">Home</button>
+    </div>
+  </section>
+
+  <!-- Halaman Sosial Media -->
+  <section id="social">
+    <img src="foto-social.jpg" alt="Foto Sosial Media" class="foto-social" />
+    <h1>Sosial Media</h1>
+    <div class="button-container">
+      <button onclick="changeSection('home')">Home</button>
+    </div>
+  </section>
+
+  <script>
+    function changeSection(id) {
+      const current = document.querySelector('section.active');
+      const next = document.getElementById(id);
+
+      if (current === next) return;
+
+      current.style.opacity = 0;
+      setTimeout(() => {
+        current.classList.remove('active');
+        next.classList.add('active');
+        next.style.opacity = 0;
+        setTimeout(() => {
+          next.style.opacity = 1;
+        }, 50);
+      }, 500);
+    }
+  </script>
+
+
+        
+</body>
+</html>
